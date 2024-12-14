@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet.css">
+  <title>Flames Game</title>
+</head>
+<body>
+      <div class="full-page">
+          <div class="main-header">
+            <h1 class="title">Flames game</h1>
+          </div>
+
+          <div class="about">
+             <h2>
+              Ignite the spark with our Flames love calculator.  
+             </h2>
+
+          </div>
+
+          <div class="boxes">
+              <div>
+                   
+                    <div class="details-container">
+                          <div class="lebels">
+                            <label for="crushname" class="le">Enter your crush name:</label>
+                          </div>
+                         
+                          <div class="inputs">
+                            <input type="text" id="crushname" name="company" placeholder="type....." required> 
+                          </div>
+                          <div class="lebels"  >
+                            <label for="crush" class="le">Enter your name:</label> 
+                          </div>
+                          
+                          <div class="inputs" >
+                            <input type="text" id="crush" name="yourname" placeholder="type....." required>
+                          </div>
+
+                          <div class="button">
+                            <button type="submit" class="btn" id="submit">Submit</button>
+                          </div>
+                             
+          
+                  </div>
+                  
+
+              </div>
+
+
+              <div class="result">
+                     <div>
+                      <h1>hello</h1>
+                     </div>
+               </div>
+
+          </div>
+        
+        
+      </div>
+
+
+
+
+
+
+
+      <script>
+
+        const submitButton=document.getElementById("submit");
+
+        submitButton.addEventListener("click",()=>
+      {
+       const shalini=document.getElementById("crushname");
+       const sai=document.getElementById("crush")
+       console.log(shalini);
+       console.log(sai);
+
+
+       const shalininame=shalini.value;
+       const sainame=sai.value;
+      
+       console.log(shalininame);
+       console.log(sainame);
+       console.log(typeof(shalininame));
+       console.log(typeof(sainame));
+
+       const result= toCheckSpecialCharacters(sainame,shalininame);
+       console.log(result[0]);
+       console.log(result[1]);
+       console.log(typeof(result));
+
+      
+       const magicNumber=findFlames(result[0],result[1]);
+         console.log(magicNumber);
+      })
+
+
+
+
+      function toCheckSpecialCharacters(name1,name2)
+      {
+        const remSpace1=name1.replace(/\s+/g, "").toUpperCase();
+        const remSpace2=name2.replace(/\s+/g, "").toUpperCase();
+        const regex = /^[a-zA-Z ]+$/;
+        const result1=regex.test(remSpace1);
+        const result2=regex.test(remSpace2);
+          if(result1===false || result2===false)
+            {
+              return alert("do not enter any special characters");
+            }
+            else
+            {
+              
+              const saiArray = Array.from(remSpace1);
+              const shaliniArray=Array.from(remSpace2);
+              return [saiArray,shaliniArray];
+            }
+      }
+
+      function findFlames(array1,array2)
+      {
+        const combinedArray = array1.concat(array2);
+        const charCounts = new Map();
+
+  for (const char of combinedArray) {
+    charCounts.set(char, (charCounts.get(char) || 0) + 1);
+  }
+
+  let duplicateCount = 0;
+  let uniqueCount = 0;
+    let distinctDuplicateCount = 0;
+
+  for (const count of charCounts.values()) {
+    if (count > 1) {
+      duplicateCount += count;
+    } else {
+      uniqueCount++;
+    }
+  }
+    for (const [char, count] of charCounts) {
+        if (count > 1) {
+            distinctDuplicateCount++;
+        }
+    }
+     
+
+    const upp=[duplicateCount,uniqueCount,distinctDuplicateCount];
+  return upp;
+
+
+      
+      }
+
+      function getFlames(magicNumber)
+      {
+        const num=magicNumber;
+
+        let flamesArray=["f","l","a","m","e","s"];
+
+             while(flamesArray.length===0)
+             {
+                  let flamesOutput=flamesArray.splice(1,num+1);
+
+             }
+
+      }
+
+     
+
+      
+      </script>
+</body>
+</html>
