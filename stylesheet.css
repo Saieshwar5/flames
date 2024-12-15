@@ -5,9 +5,16 @@
   
 }
 
-body{
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   background-color: whitesmoke
 }
+
+
 
 .full-page{
   display: block;
@@ -39,7 +46,6 @@ body{
   justify-content: space-between;
   align-items: center;
   height: 100%; 
-  background-color: wheat;
 }
 
 .details-container{
@@ -47,7 +53,6 @@ body{
   flex-direction: column;
   justify-content:space-around;
   align-items: center;
-  background-color: yellowgreen;
   height: 40vh;
   width: 44vw;
   margin-left: 5vw;
@@ -78,3 +83,27 @@ input{
 .btn:active{
   opacity: 0.5;
 }
+
+.result{
+  height:50vh;
+}
+
+.result-box
+{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+   margin-right: 5vw;
+   height: 40vh;
+   width: 40vw;
+}
+
+.output{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5vw;
+}
+
+
+
