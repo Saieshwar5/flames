@@ -41,63 +41,34 @@
                           <div class="button">
                             <button type="submit" class="btn" id="submit">Submit</button>
                           </div>
-                             
-          
                   </div>
-                  
-
               </div>
-
-
               <div class="result">
-                     <div>
-                      <h1>hello</h1>
+                     <div class="result-box">
+                     </div>
+                     <div class="output">
                      </div>
                </div>
-
-          </div>
-        
-        
+              </div> 
       </div>
 
-
-
-
-
-
-
       <script>
-
         const submitButton=document.getElementById("submit");
-
         submitButton.addEventListener("click",()=>
       {
-       const shalini=document.getElementById("crushname");
-       const sai=document.getElementById("crush")
-       console.log(shalini);
-       console.log(sai);
-
-
-       const shalininame=shalini.value;
-       const sainame=sai.value;
-      
-       console.log(shalininame);
-       console.log(sainame);
-       console.log(typeof(shalininame));
-       console.log(typeof(sainame));
-
-       const result= toCheckSpecialCharacters(sainame,shalininame);
-       console.log(result[0]);
-       console.log(result[1]);
-       console.log(typeof(result));
-
-      
+       const input1=document.getElementById("crushname");
+       const input2=document.getElementById("crush");
+       const input1name=input1.value;
+       const input2name=input2.value;
+       const result= toCheckSpecialCharacters(input2name,input1name);
        const magicNumber=findFlames(result[0],result[1]);
-         console.log(magicNumber);
+         const flame=calculateFlames(magicNumber);
+         console.log(flame);
+         imageGeneration(flame);
+         document.getElementById("crushname").value="";
+         document.getElementById("crush").value="";
+     
       })
-
-
-
 
       function toCheckSpecialCharacters(name1,name2)
       {
@@ -112,7 +83,6 @@
             }
             else
             {
-              
               const saiArray = Array.from(remSpace1);
               const shaliniArray=Array.from(remSpace2);
               return [saiArray,shaliniArray];
@@ -121,53 +91,115 @@
 
       function findFlames(array1,array2)
       {
-        const combinedArray = array1.concat(array2);
-        const charCounts = new Map();
+         let testArray1=array1;
+         let testArray2=array2;
 
-  for (const char of combinedArray) {
-    charCounts.set(char, (charCounts.get(char) || 0) + 1);
-  }
+        outerLebel: for(let i=0;i<testArray1.length ;i++)
+         {
+            for(let j=0;j<testArray2.length;j++)
+            {
+               if(testArray1[i]===testArray2[j])
+               {
+                testArray1.splice(i, 1);
+                testArray2.splice(j,1);
+                findFlames(testArray1,testArray2);
+               }
+              
+            }
+         } 
+    
+                let combinedArray = testArray1.concat(testArray2);
+                  return combinedArray;
+      } 
 
-  let duplicateCount = 0;
-  let uniqueCount = 0;
-    let distinctDuplicateCount = 0;
+     function calculateFlames(magicNumber)
+     {
+          const uniqueArray=magicNumber;
+           const magicValue=uniqueArray.length;
+           const value=magicValue-1;
+          let flames=["friend","love","affection","marriage","enenmy","sibling"];
+              while(flames.length>1)
+           {
+             let indexValue=value%flames.length;
+               flames.splice(indexValue,1);
+               }
+                return flames[0];
+     }
 
-  for (const count of charCounts.values()) {
-    if (count > 1) {
-      duplicateCount += count;
-    } else {
-      uniqueCount++;
-    }
-  }
-    for (const [char, count] of charCounts) {
-        if (count > 1) {
-            distinctDuplicateCount++;
+        function imageGeneration(flame)
+        {
+            let input=flame;
+           const selectElement=document.querySelector(".result-box");
+           const newElement = document.createElement('img');
+           const selectElement1=document.querySelector(".output");
+           const newElement1=document.createElement('h1');
+           selectElement.innerHTML = "";
+           selectElement1.innerHTML="";
+              switch(input){
+                  case "friend":
+                    newElement.src = "images/friendship.jpg"; 
+                    newElement.alt = "love Image";
+                    newElement.style.display = "block";
+                    selectElement.appendChild(newElement); 
+                    newElement1.innerText=input;
+                    selectElement1.appendChild(newElement1);
+                    break;
+                    
+                    case "love":
+
+                    newElement.src = "images/love.jpg"; 
+                    newElement.alt = "love Image";
+                    newElement.style.display = "block";
+                    selectElement.appendChild(newElement); 
+                    newElement1.innerText=input;
+                    selectElement1.appendChild(newElement1);
+                    break;
+
+                    case "affection":
+
+                    newElement.src = "images/affection.jpg"; 
+                    newElement.alt = "affection Image";
+                    newElement.style.display = "block";
+                    selectElement.appendChild(newElement); 
+                    newElement1.innerText=input;
+                    selectElement1.appendChild(newElement1);
+                    break;
+
+                    case "marriage":
+
+                    newElement.src = "images/marriage.jpg"; 
+                    newElement.alt = "affection Image";
+                    newElement.style.display = "block";
+                    selectElement.appendChild(newElement); 
+                    newElement1.innerText=input;
+                    selectElement1.appendChild(newElement1);
+                    break;
+
+                    case "enemy":
+
+
+                    newElement.src = "images/enemy.jpg"; 
+                    newElement.alt = "enemy Image";
+                    newElement.style.display = "block";
+                    selectElement.appendChild(newElement); 
+                    newElement1.innerText=input;
+                    selectElement1.appendChild(newElement1);
+                    break;
+
+
+                    case "sibling":
+
+                    newElement.src = "images/sibling.jpg"; 
+                    newElement.alt = "sibling Image";
+                    newElement.style.display = "block";
+                    selectElement.appendChild(newElement); 
+                    newElement1.innerText=input;
+                    selectElement1.appendChild(newElement1);
+                    break;
+
+
+              }
         }
-    }
-     
-
-    const upp=[duplicateCount,uniqueCount,distinctDuplicateCount];
-  return upp;
-
-
-      
-      }
-
-      function getFlames(magicNumber)
-      {
-        const num=magicNumber;
-
-        let flamesArray=["f","l","a","m","e","s"];
-
-             while(flamesArray.length===0)
-             {
-                  let flamesOutput=flamesArray.splice(1,num+1);
-
-             }
-
-      }
-
-     
 
       
       </script>
